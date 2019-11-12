@@ -7,21 +7,13 @@
 #include "Ad.h"
 #include "AdTypeEnum.h"
 
-void Ad::CreateAd()
+void Ad::CreateAd(string name, string adText, int adType)
 {
-	cout << "Enter ad name: " << endl;
-	cin >> this->name;
+	this->name = name;
 	this->idIndex++;
 	this->id = this->idIndex;
-}
-
-void Ad::CreateAdText()
-{
-	int setText;
-	cout << "Enter ad text: " << endl;
-	cin >> this->adText;
-	cout << "1.Scroll, 2.Blink, 3.PlainText:" << endl;
-	cin >> setText;
+	int setText = adType;
+	this->adText = adText;
 	switch (setText)
 	{
 	case 1:
@@ -34,4 +26,6 @@ void Ad::CreateAdText()
 		this->adType = AdType::plainText;
 	}
 }
+
+
 

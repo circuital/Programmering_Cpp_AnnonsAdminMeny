@@ -1,3 +1,4 @@
+#pragma once
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <vector>
@@ -16,6 +17,7 @@ class AdServingEngine
 	int activeCampaignCount;
 
 public:
-	void AddCustomer();
+	void AddCustomer(string name);
 	Ad GetNextAd();
+	vector<Customer> GetListOfCustomer();
 };

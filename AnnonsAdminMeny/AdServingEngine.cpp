@@ -9,17 +9,17 @@
 #include "Ad.h"
 #include "AdServingEngine.h"
 
-void AdServingEngine::AddCustomer()
+void AdServingEngine::AddCustomer(string name)
 {
 	Customer cust;
-	cust.CreateCustomer();
+	cust.CreateCustomer(name);
 	this->allCustomers.push_back(cust);
 }
 
 Ad AdServingEngine::GetNextAd()
 {
 	this->allActiveCampaigns.clear();
-	float totalParts;
+	float totalParts = 0;
 	srand(time(NULL));
 	vector<Campaign> activeCampaigns;
 	float campaignCost;
@@ -53,4 +53,10 @@ Ad AdServingEngine::GetNextAd()
 	int randomAd = rand() % ads.size();
 	Ad chosenAd;
 	chosenAd = ads[randomAd];
+	return chosenAd;
+}
+
+vector<Customer> AdServingEngine::GetListOfCustomer()
+{
+	return this->allCustomers;
 }

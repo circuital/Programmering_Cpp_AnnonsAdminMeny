@@ -1,3 +1,4 @@
+#pragma once
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <vector>
@@ -19,8 +20,8 @@ class Campaign
 	int idIndex = 0;
 
 public:
-	void CreateCampaign();
-	void AddAd();
+	void CreateCampaign(string name, time_t fromDate, time_t toDate, float campaignCost);
+	void AddAd(string name, string adText, int adType);
 	float GetCampaignCost();
 	vector<Ad> GetAdList();
 	time_t GetFromDateTime();

@@ -1,3 +1,4 @@
+#pragma once
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <vector>
@@ -16,10 +17,11 @@ class Customer
 
 public:
 
-	void CreateCustomer();
-	void AddCampaign();
+	void CreateCustomer(string name);
+	void AddCampaign(string name, time_t fromDate, time_t toDate, float campaignCost);
 	vector<Campaign> GetActiveCampaignList();
 	bool HasActiveCampaigns();
+	string GetCustomerName();
 
 };
 

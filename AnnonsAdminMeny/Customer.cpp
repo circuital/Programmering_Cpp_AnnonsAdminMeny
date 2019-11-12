@@ -10,18 +10,17 @@
 
 using namespace std;
 
-void Customer::CreateCustomer()
+void Customer::CreateCustomer(string name)
 {
-	cout << "Enter customer name: " << endl;
-	cin >> this->name;
+	this->name = name;
 	this->idIndex++;
 	this->id = this->idIndex;
 }
 
-void Customer::AddCampaign()
+void Customer::AddCampaign(string name, time_t fromDate, time_t toDate, float campaignCost)
 {
 	Campaign cam;
-	cam.CreateCampaign();
+	cam.CreateCampaign(name, fromDate, toDate, campaignCost);
 	this->campaigns.push_back(cam);
 }
 
@@ -53,4 +52,9 @@ bool Customer::HasActiveCampaigns()
 	{
 		return false;
 	}
+}
+
+string Customer::GetCustomerName()
+{
+	return this->name;
 }

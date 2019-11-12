@@ -9,47 +9,22 @@
 
 using namespace std;
 
-void Campaign::CreateCampaign()
+void Campaign::CreateCampaign(string name, time_t fromDate, time_t toDate, float campaignCost)
 {
-	cout << "Enter the campaign name: " << endl;
-	cin >> this->name;
+	this->name = name;
 	this->idIndex++;
 	this->id = idIndex;
+	
+	this->fromDateTime = fromDate;
+	this->toDateTime = toDate;
 
-	int fromYear, fromMonth, fromDay;
-	cout << "Enter the start year YYYY: " << endl;
-	cin >> fromYear;
-	cout << "Enter the start month MM: " << endl;
-	cin >> fromMonth;
-	cout << "Enter the start day DD: " << endl;
-	cin >> fromDay;
-	struct tm* fromDate;
-	fromDate->tm_year = fromYear - 1900;
-	fromDate->tm_mon = fromMonth + 1;
-	fromDate->tm_mday = fromDay;
-	this->fromDateTime = mktime(fromDate);
-
-	int toYear, toMonth, toDay;
-	cout << "Enter the end year YYYY: " << endl;
-	cin >> toYear;
-	cout << "Enter the end month MM: " << endl;
-	cin >> toMonth;
-	cout << "Enter the end day DD: " << endl;
-	cin >> toDay;
-	struct tm* toDate;
-	toDate->tm_year = toYear - 1900;
-	toDate->tm_mon = toMonth + 1;
-	toDate->tm_mday = toDay;
-	this->toDateTime = mktime(toDate);
-
-	cout << "Enter the campaign cost: " << endl;
-	cin >> this->campaignCost;
+	this->campaignCost = campaignCost;
 }
 
-void Campaign::AddAd()
+void Campaign::AddAd(string name, string adText, int adType)
 {
 	Ad ad;
-	ad.CreateAd();
+	ad.CreateAd(name, adText, adType);
 	this->ads.push_back(ad);
 }
 

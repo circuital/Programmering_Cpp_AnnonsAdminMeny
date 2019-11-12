@@ -29,8 +29,8 @@ int main()
 		float newCampaignCost;
 		string adName, adText;
 		int adType;
-		vector<Customer> listOfCustomers;
 		string campaignOwner;
+		vector<Customer> listOfCustomers;
 		string customerName;
 		switch (selection) 
 		{

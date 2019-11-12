@@ -1,3 +1,4 @@
+#pragma once
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <vector>
@@ -17,6 +18,5 @@ class Ad
 	int idIndex = 0;
 
 public:
-	void CreateAd();
-	void CreateAdText();
+	void CreateAd(string name, string adText, int adType);
 };
