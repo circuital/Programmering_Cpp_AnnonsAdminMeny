@@ -58,3 +58,8 @@ string Customer::GetCustomerName()
 {
 	return this->name;
 }
+
+vector<Campaign> Customer::GetCampaignList()
+{
+	return this->campaigns;
+}

@@ -20,5 +20,4 @@ public:
 	void AddCustomer(string name);
 	Ad GetNextAd();
 	vector<Customer> GetListOfCustomer();
-	Customer GetCustomer(string name);
 };

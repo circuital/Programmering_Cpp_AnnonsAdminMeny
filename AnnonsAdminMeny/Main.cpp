@@ -13,10 +13,10 @@ using namespace std;
 
 int main() 
 {
+	AdServingEngine ase;
 	while (true) 
 	{
 		int selection;
-		AdServingEngine ase;
 		cout << "1. Create customer.\n2. Create Campaign.\n3. Create Ad.\n4. Get next ad.\n5. Exit.\n";
 		cin >> selection;
 		
@@ -32,6 +32,12 @@ int main()
 		vector<Customer> listOfCustomers;
 		string campaignOwner;
 		string customerName;
+		string name;
+		vector<Campaign> listOfCampaigns;
+		string adOwner;
+		string campaignName;
+		int pos = 1;
+		int adOwnerNumber;
 		switch (selection) 
 		{
 		case 1:
@@ -66,11 +72,11 @@ int main()
 					fromDate.tm_min = 0;
 					time_t from = mktime(&fromDate);
 
-					cout << "Enter the end year YYYY: " << endl;
+					cout << "Enter the end year YYYY: ";
 					cin >> toYear;
-					cout << "Enter the end month MM: " << endl;
+					cout << "Enter the end month MM: ";
 					cin >> toMonth;
-					cout << "Enter the end day DD: " << endl;
+					cout << "Enter the end day DD: ";
 					cin >> toDay;
 					toDate.tm_year = toYear - 1900;
 					toDate.tm_mon = toMonth + 1;
@@ -86,21 +92,48 @@ int main()
 				}
 			}
 			break;
-		//case 3:
-		//	cout << "Enter ad name: ";
-		//	cin >> adName;
-		//	cout << "Enter ad text: ";
-		//	cin >> adText;
-		//	cout << "1.Scroll, 2.Blink, 3.PlainText: ";
-		//	cin >> adType;
+		case 3:
+			cout << "Enter for which customer: ";
+			cin >> campaignOwner;
+			listOfCustomers = ase.GetListOfCustomer();
+			for (auto cust : listOfCustomers)
+			{
+				customerName = cust.GetCustomerName();
+				if (customerName == campaignOwner)
+				{
+					listOfCampaigns = cust.GetCampaignList();
+					for (auto cam : listOfCampaigns)
+					{
+						name = cam.GetCampaignName();
 
-		//	cam.AddAd(adName, adText, adType);
-		//	continue;
+						cout << pos << ". " << name << endl;
+						pos++;
+					}
+					cout << "Enter for which campaign: ";
+					cin >> adOwnerNumber;
+					cout << "Enter ad name: ";
+					cin >> adName;
+					cout << "Enter ad text: ";
+					cin >> adText;
+					cout << "1.Scroll, 2.Blink, 3.PlainText: ";
+					cin >> adType;
+
+					listOfCampaigns[adOwnerNumber-1].AddAd(adName, adText, adType);
+				}
+			}
+			continue;
 		//case 4:
 		//	ad = ase.GetNextAd();
 		//	cout << ad;
 		case 5:
 			break;
+		case 6:
+			listOfCustomers = ase.GetListOfCustomer();
+			for (auto cust : listOfCustomers)
+			{
+				name = cust.GetCustomerName();
+				cout << name << endl;
+			}
 		default:
 			cout << "Wrong format!";
 			break;

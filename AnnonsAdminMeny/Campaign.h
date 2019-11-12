@@ -26,4 +26,5 @@ public:
 	vector<Ad> GetAdList();
 	time_t GetFromDateTime();
 	time_t GetToDateTime();
+	string GetCampaignName();
 };

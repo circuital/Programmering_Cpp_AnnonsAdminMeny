@@ -60,9 +60,3 @@ vector<Customer> AdServingEngine::GetListOfCustomer()
 {
 	return this->allCustomers;
 }
-
-Customer AdServingEngine::GetCustomer()
-{
-	return Customer();
-}
-

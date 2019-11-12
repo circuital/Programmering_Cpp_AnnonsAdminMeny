@@ -48,3 +48,8 @@ time_t Campaign::GetToDateTime()
 	return this->toDateTime;
 }
 
+string Campaign::GetCampaignName()
+{
+	return this->name;
+}
+

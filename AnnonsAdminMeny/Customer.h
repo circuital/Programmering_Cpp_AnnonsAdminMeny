@@ -22,6 +22,6 @@ public:
 	vector<Campaign> GetActiveCampaignList();
 	bool HasActiveCampaigns();
 	string GetCustomerName();
-
+	vector<Campaign> GetCampaignList();
 };
 
