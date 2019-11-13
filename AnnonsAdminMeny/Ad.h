@@ -15,8 +15,7 @@ class Ad
 	int id;
 	string adText;
 	AdType adType;
-	int idIndex = 0;
 
 public:
-	void CreateAd(string name, string adText, int adType);
+	void CreateAd(string name, string adText, int adType, int idIndexAd);
 };

@@ -9,10 +9,9 @@
 
 using namespace std;
 
-void Campaign::CreateCampaign(string name, time_t fromDate, time_t toDate, float campaignCost)
+void Campaign::CreateCampaign(string name, time_t fromDate, time_t toDate, float campaignCost, int idIndex)
 {
 	this->name = name;
-	this->idIndex++;
 	this->id = idIndex;
 	
 	this->fromDateTime = fromDate;
@@ -21,10 +20,10 @@ void Campaign::CreateCampaign(string name, time_t fromDate, time_t toDate, float
 	this->campaignCost = campaignCost;
 }
 
-void Campaign::AddAd(string name, string adText, int adType)
+void Campaign::AddAd(string name, string adText, int adType, int idIndex)
 {
 	Ad ad;
-	ad.CreateAd(name, adText, adType);
+	ad.CreateAd(name, adText, adType, idIndex);
 	this->ads.push_back(ad);
 }
 

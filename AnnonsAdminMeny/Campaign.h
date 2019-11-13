@@ -17,11 +17,10 @@ class Campaign
 	time_t toDateTime;
 	float campaignCost;
 	vector<Ad> ads;
-	int idIndex = 0;
 
 public:
-	void CreateCampaign(string name, time_t fromDate, time_t toDate, float campaignCost);
-	void AddAd(string name, string adText, int adType);
+	void CreateCampaign(string name, time_t fromDate, time_t toDate, float campaignCost, int idIndex);
+	void AddAd(string name, string adText, int adType, int idIndex);
 	float GetCampaignCost();
 	vector<Ad> GetAdList();
 	time_t GetFromDateTime();

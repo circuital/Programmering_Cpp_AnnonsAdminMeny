@@ -10,17 +10,16 @@
 
 using namespace std;
 
-void Customer::CreateCustomer(string name)
+void Customer::CreateCustomer(string name, int idIndex)
 {
 	this->name = name;
-	this->idIndex++;
-	this->id = this->idIndex;
+	this->id = idIndex;
 }
 
-void Customer::AddCampaign(string name, time_t fromDate, time_t toDate, float campaignCost)
+void Customer::AddCampaign(string name, time_t fromDate, time_t toDate, float campaignCost, int idIndex)
 {
 	Campaign cam;
-	cam.CreateCampaign(name, fromDate, toDate, campaignCost);
+	cam.CreateCampaign(name, fromDate, toDate, campaignCost, idIndex);
 	this->campaigns.push_back(cam);
 }
 
@@ -62,4 +61,17 @@ string Customer::GetCustomerName()
 vector<Campaign> Customer::GetCampaignList()
 {
 	return this->campaigns;
+}
+
+Campaign* Customer::GetCampaign(int index)
+{
+	if (index <= campaigns.size() && index <= 0)
+	{
+		return &(this->campaigns[index]);
+	}
+	else
+	{
+		return NULL;
+	}
+	
 }

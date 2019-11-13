@@ -7,13 +7,12 @@
 #include "Ad.h"
 #include "AdTypeEnum.h"
 
-void Ad::CreateAd(string name, string adText, int adType)
+void Ad::CreateAd(string name, string adText, int adType, int idIndex)
 {
 	this->name = name;
-	this->idIndex++;
-	this->id = this->idIndex;
 	int setText = adType;
 	this->adText = adText;
+	this->id = idIndex;
 	switch (setText)
 	{
 	case 1:

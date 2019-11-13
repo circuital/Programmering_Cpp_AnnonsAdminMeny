@@ -9,10 +9,10 @@
 #include "Ad.h"
 #include "AdServingEngine.h"
 
-void AdServingEngine::AddCustomer(string name)
+void AdServingEngine::AddCustomer(string name, int idIndex)
 {
 	Customer cust;
-	cust.CreateCustomer(name);
+	cust.CreateCustomer(name, idIndex);
 	this->allCustomers.push_back(cust);
 }
 
@@ -61,8 +61,16 @@ vector<Customer> AdServingEngine::GetListOfCustomer()
 	return this->allCustomers;
 }
 
-Customer AdServingEngine::GetCustomer()
+Customer* AdServingEngine::GetCustomer(int index)
 {
-	return Customer();
+	if (index <= allCustomers.size() && index >= 0)
+	{
+		return &(this->allCustomers[index]);
+	}
+	else
+	{
+		return NULL;
+	}
+
 }
 

@@ -17,8 +17,8 @@ class AdServingEngine
 	int activeCampaignCount;
 
 public:
-	void AddCustomer(string name);
+	void AddCustomer(string name, int idIndex);
 	Ad GetNextAd();
 	vector<Customer> GetListOfCustomer();
-	Customer GetCustomer(string name);
+	Customer* GetCustomer(int index);
 };
