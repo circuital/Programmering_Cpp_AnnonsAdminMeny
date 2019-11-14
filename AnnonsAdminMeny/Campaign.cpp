@@ -13,14 +13,24 @@ void Campaign::CreateCampaign(string name, time_t fromDate, time_t toDate, float
 {
 	this->name = name;
 	this->id = idIndex;
-	
+
 	this->fromDateTime = fromDate;
 	this->toDateTime = toDate;
 
 	this->campaignCost = campaignCost;
 }
 
-void Campaign::AddAd(string name, string adText, int adType, int idIndex)
+void Campaign::UpdateCampaign(string name, time_t fromDate, time_t toDate, float campaignCost)
+{
+	this->name = name;
+
+	this->fromDateTime = fromDate;
+	this->toDateTime = toDate;
+
+	this->campaignCost = campaignCost;
+}
+
+void Campaign::AddAd(string name, string adText, AdType adType, int idIndex)
 {
 	Ad ad;
 	ad.CreateAd(name, adText, adType, idIndex);
@@ -30,11 +40,6 @@ void Campaign::AddAd(string name, string adText, int adType, int idIndex)
 float Campaign::GetCampaignCost()
 {
 	return this->campaignCost;
-}
-
-vector<Ad> Campaign::GetAdList()
-{
-	return this->ads;
 }
 
 time_t Campaign::GetFromDateTime()
@@ -52,3 +57,20 @@ string Campaign::GetCampaignName()
 	return this->name;
 }
 
+vector<Ad> Campaign::GetAdList()
+{
+	return this->ads;
+}
+
+int Campaign::GetCampaignId()
+{
+	return this->id;
+}
+
+Ad* Campaign::GetAd(int index)
+{
+	if (index <= ads.size() && index >= 0)
+		return &(this->ads[index]);
+	else
+		return NULL;
+}

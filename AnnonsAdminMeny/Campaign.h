@@ -20,10 +20,15 @@ class Campaign
 
 public:
 	void CreateCampaign(string name, time_t fromDate, time_t toDate, float campaignCost, int idIndex);
-	void AddAd(string name, string adText, int adType, int idIndex);
+	void UpdateCampaign(string name, time_t fromDate, time_t toDate, float campaignCost);
+	void AddAd(string name, string adText, AdType adType, int idIndex);
+
 	float GetCampaignCost();
-	vector<Ad> GetAdList();
 	time_t GetFromDateTime();
 	time_t GetToDateTime();
+	
 	string GetCampaignName();
+	vector<Ad> GetAdList();
+	int GetCampaignId();
+	Ad* GetAd(int index);
 };

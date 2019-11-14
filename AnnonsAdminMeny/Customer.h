@@ -17,11 +17,13 @@ class Customer
 public:
 
 	void CreateCustomer(string name, int idIndex);
+	void UpdateCustomer(string name);
 	void AddCampaign(string name, time_t fromDate, time_t toDate, float campaignCost, int idIndex);
+
 	vector<Campaign> GetActiveCampaignList();
 	bool HasActiveCampaigns();
+	
 	string GetCustomerName();
 	vector<Campaign> GetCampaignList();
 	Campaign* GetCampaign(int index);
 };
-

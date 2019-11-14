@@ -16,46 +16,6 @@ void AdServingEngine::AddCustomer(string name, int idIndex)
 	this->allCustomers.push_back(cust);
 }
 
-Ad AdServingEngine::GetNextAd()
-{
-	this->allActiveCampaigns.clear();
-	float totalParts = 0;
-	srand(time(NULL));
-	vector<Campaign> activeCampaigns;
-	float campaignCost;
-	for (auto cust : this->allCustomers)
-	{
-		if (cust.HasActiveCampaigns())
-		{
-			activeCampaigns = cust.GetActiveCampaignList();
-			for (auto cam : activeCampaigns)
-			{
-				campaignCost = cam.GetCampaignCost();
-				allActiveCampaigns.push_back(cam);
-				totalParts += campaignCost;
-			}
-		}
-	}
-	float randomPart = rand() % (int)totalParts;
-	float currentParts = 0;
-	Campaign chosenCampaign;
-	for (auto cam : this->allActiveCampaigns)
-	{
-		campaignCost = cam.GetCampaignCost();
-		currentParts += campaignCost;
-		if (randomPart < currentParts)
-		{
-			chosenCampaign = cam;
-			break;
-		}
-	}
-	vector<Ad> ads = chosenCampaign.GetAdList();
-	int randomAd = rand() % ads.size();
-	Ad chosenAd;
-	chosenAd = ads[randomAd];
-	return chosenAd;
-}
-
 vector<Customer> AdServingEngine::GetListOfCustomer()
 {
 	return this->allCustomers;
@@ -64,13 +24,50 @@ vector<Customer> AdServingEngine::GetListOfCustomer()
 Customer* AdServingEngine::GetCustomer(int index)
 {
 	if (index <= allCustomers.size() && index >= 0)
-	{
 		return &(this->allCustomers[index]);
-	}
 	else
-	{
 		return NULL;
-	}
-
 }
 
+Ad AdServingEngine::GetNextAd()
+{
+	this->allActiveCampaigns.clear();
+	float totalParts = 0;
+	srand(time(NULL));
+	vector<Campaign> activeCampaigns;
+	float campaignCost;
+	int checkLastCampaign;
+	for (int i = 0; i < allCustomers.size(); i++)
+	{
+		if (allCustomers[i].HasActiveCampaigns())
+		{
+			activeCampaigns = allCustomers[i].GetActiveCampaignList();
+			for (int j = 0; j < activeCampaigns.size(); j++)
+			{
+				campaignCost = activeCampaigns[j].GetCampaignCost();
+				allActiveCampaigns.push_back(activeCampaigns[j]);
+				totalParts += campaignCost;
+			}
+		}
+	}
+	while (true)
+	{
+		int totalPartsInt = static_cast<int>(totalParts);
+		int randomPart = rand() % totalPartsInt;
+		int currentParts = 0;
+		for (int k = 0; k < allActiveCampaigns.size(); k++)
+		{
+			campaignCost = allActiveCampaigns[k].GetCampaignCost();
+			currentParts += campaignCost;
+			checkLastCampaign = allActiveCampaigns[k].GetCampaignId();
+			if (randomPart < currentParts && checkLastCampaign != lastCampaign)
+			{
+				lastCampaign = checkLastCampaign;
+				vector<Ad> ads = allActiveCampaigns[k].GetAdList();
+				int randomAd = rand() % ads.size();
+				return (ads[randomAd]);
+				break;
+			}
+		}
+	}
+}

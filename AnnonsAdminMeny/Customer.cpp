@@ -16,6 +16,11 @@ void Customer::CreateCustomer(string name, int idIndex)
 	this->id = idIndex;
 }
 
+void Customer::UpdateCustomer(string name)
+{
+	this->name = name;
+}
+
 void Customer::AddCampaign(string name, time_t fromDate, time_t toDate, float campaignCost, int idIndex)
 {
 	Campaign cam;
@@ -30,20 +35,21 @@ vector<Campaign> Customer::GetActiveCampaignList()
 	time_t now = time(NULL);
 	time_t fromDateTime;
 	time_t toDateTime;
-	for (auto cam : this->campaigns)
+	for (int i = 0; i < campaigns.size(); i++)
 	{
-		fromDateTime = cam.GetFromDateTime();
-		toDateTime = cam.GetToDateTime();
-		if (fromDateTime >= now && toDateTime <= now)
-			this->activeCampaigns.push_back(cam);
+		fromDateTime = campaigns[i].GetFromDateTime();
+		toDateTime = campaigns[i].GetToDateTime();
+		if (fromDateTime <= now && toDateTime >= now)
+			this->activeCampaigns.push_back(campaigns[i]);
 	}
 	return this->activeCampaigns;
 }
 
 bool Customer::HasActiveCampaigns()
 {
-	this->GetActiveCampaignList();
-	if (this->activeCampaigns.size() > 0)
+	vector<Campaign> v;
+	v = this->GetActiveCampaignList();
+	if (v.size() > 0)
 	{
 		return true;
 	}
@@ -65,13 +71,9 @@ vector<Campaign> Customer::GetCampaignList()
 
 Campaign* Customer::GetCampaign(int index)
 {
-	if (index <= campaigns.size() && index <= 0)
-	{
+	if (index <= campaigns.size() && index >= 0)
 		return &(this->campaigns[index]);
-	}
 	else
-	{
 		return NULL;
-	}
-	
 }
+

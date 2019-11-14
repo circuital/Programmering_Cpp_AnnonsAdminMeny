@@ -17,5 +17,9 @@ class Ad
 	AdType adType;
 
 public:
-	void CreateAd(string name, string adText, int adType, int idIndexAd);
+	void CreateAd(string name, string adText, AdType adType, int idIndex);
+	void UpdateAd(string name, string adText, AdType adType);
+	string GetAdName();
+	string GetAdText();
+	AdType GetAdType();
 };

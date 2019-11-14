@@ -7,24 +7,32 @@
 #include "Ad.h"
 #include "AdTypeEnum.h"
 
-void Ad::CreateAd(string name, string adText, int adType, int idIndex)
+void Ad::CreateAd(string name, string adText, AdType adType, int idIndex)
 {
 	this->name = name;
-	int setText = adType;
-	this->adText = adText;
 	this->id = idIndex;
-	switch (setText)
-	{
-	case 1:
-		this->adType = AdType::scroll;
-
-	case 2:
-		this->adType = AdType::blink;
-
-	case 3:
-		this->adType = AdType::plainText;
-	}
+	this->adType = adType;
+	this->adText = adText;
 }
 
+void Ad::UpdateAd(string name, string adText, AdType adType)
+{
+	this->name = name;
+	this->adType = adType;
+	this->adText = adText;
+}
 
+string Ad::GetAdName()
+{
+	return this->name;
+}
 
+string Ad::GetAdText()
+{
+	return this->adText;
+}
+
+AdType Ad::GetAdType()
+{
+	return this->adType;
+}

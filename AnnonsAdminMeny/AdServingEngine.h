@@ -15,10 +15,11 @@ class AdServingEngine
 	vector<Campaign> allActiveCampaigns;
 	float activeCampaignCostTotal;
 	int activeCampaignCount;
+	int lastCampaign;
 
 public:
 	void AddCustomer(string name, int idIndex);
-	Ad GetNextAd();
 	vector<Customer> GetListOfCustomer();
 	Customer* GetCustomer(int index);
+	Ad GetNextAd();
 };
